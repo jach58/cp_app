@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="card" class="col-sm-8 mt-5">
+              <form autocomplete="off" novalidate  [formGroup]="form">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <input type="email" class="form-control" name="nombre" placeholder="Nombre"  formControlName="nombre">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="number" class="form-control" name="codigo" formControlName="codigo"  placeholder="Código">
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary" (click)="buscar()">Buscar</button>
+              </form>
+              <div class="card" *ngIf="info">
+                <div class="card-header">
+                  <p>Codigo postal: {{info.codigo_postal}} </p>
+                  <p>Municipio: {{info.municipio}}</p>
+                  <p>Estado: {{info.estado}} </p>
+                </div>
+                <div class="card-body">
+                  <table>
+                    <thead>
+                      <th>colonia</th>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let colonia of info.colonias">
+                        <td width="90%">{{colonia}}</td>
+                        <td> <input type="button"  class="btn btn-info" value="Seleccionar" (click)="abrirModal(content,colonia)"/></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Información de Busqueda</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p><strong>Nombre: </strong>{{ infoUser.nombre }}</p>
+      <p><strong>Colonia: </strong>{{ infoUser.colonia }}</p>
+      <form autocomplete="off" novalidate [formGroup]="formUser">
+        <div class="form-row">
+          <div class="form-group col-sm-6">
+              <input type="text" class="form-control" placeholder="Calle" name="calle" formControlName="calle">
+          </div>
+          <div class="form-group col-sm-6">
+              <input class="form-control" placeholder="numero" name="numero" type="number" formControlName="numero">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="guardar(content)">Guardar</button>
+    </div>
+  </ng-template>

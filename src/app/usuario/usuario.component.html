@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row justify-content-md-center" *ngIf="usuario">
+      <div class="card text-white bg-secondary col-sm-8 mt-5 mb-3" style="max-width: 18rem;">
+          <div class="card-header">Información de Búsqueda</div>
+          <div class="card-body">
+            <h5 class="card-title">Nombre: {{usuario.nombre}}</h5>
+            <p class="card-text"><strong>Colonia</strong>: {{usuario.colonia}}</p>
+            <p class="card-text"><strong>Calle</strong>: {{usuario.calle}}</p>
+            <p class="card-text"><strong>Numero</strong>: {{usuario.numero}}</p>
+            <a [routerLink]="['/formulario']" class="btn btn-primary stretched-link">Realizar otra búsqueda</a>
+          </div>
+        </div>
+  </div>
+  <div class="row justify-content-md-center" *ngIf="!usuario">
+    <div class="col-sm-8 mt-5">
+      <p>No hay información, favor de realizar una busqueda</p>
+      <p>
+        <a [routerLink]="['/formulario']" class="btn btn-primary stretched-link">Busqueda</a>
+      </p>
+    </div>
+  </div>
+</div>
