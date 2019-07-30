@@ -45,7 +45,6 @@ export class FormularioComponent  {
       this.infoUser.codigo = val.codigo;
       this.infoService.loadInfoByCodigo(val.codigo).subscribe(
         (data) => {
-          console.log(data)
             this.info = data;
           }
         );
